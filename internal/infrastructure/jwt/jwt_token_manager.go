@@ -24,18 +24,35 @@ func (j *JwtTokenManager) AssignRSA(sub string) (string, error) {
 	if err != nil {
 		return "", fmt.Errorf("error during generation of private key: %v", err)
 	}
+	
 	token := jwt.NewWithClaims(&j.signingMethodRSA, jwt.MapClaims{
 		"sub": sub,
 		"exp": jwt.NewNumericDate(time.Now().Add(5 * time.Minute)),
 	})
+
 	signedToken, err := token.SignedString(privateKey)
 	if err != nil {
 		return "", fmt.Errorf("error during token signing: %v", err)
 	}
+
 	return signedToken, nil
 }
 
-func (j *JwtTokenManager) VerifyRSA(token string) (any, error) {
-	decoded, err := j.signingMethodRSA.Verify(token, )
-	return nil, nil
+func (j *JwtTokenManager) VerifyRSA(tokenString string, publicKey *rsa.PublicKey) (any, error) {
+	parsedToken, err := jwt.ParseWithClaims(tokenString, jwt.MapClaims{}, func(t *jwt.Token) (interface{}, error) {
+		if _, ok := t.Method.(*jwt.SigningMethodRSA); !ok {
+			return nil, fmt.Errorf("unexpected signing method: %v", t.Header["alg"])
+		}
+		return publicKey, nil
+	})
+
+	if err != nil {
+		return nil, fmt.Errorf("error verifying token: %v", err)
+	}
+
+	if !parsedToken.Valid {
+		return nil, fmt.Errorf("invalid token")
+	}
+
+	return parsedToken.Claims, nil
 }
