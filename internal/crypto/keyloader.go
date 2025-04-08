@@ -1,4 +1,4 @@
-package keys
+package keyloader
 
 import (
 	"crypto/rsa"
