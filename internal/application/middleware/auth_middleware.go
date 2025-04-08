@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/FelipeSoft/filesync-cloud/internal/domain"
-	httputil "github.com/FelipeSoft/filesync-cloud/internal/utils/http"
+	httputil "github.com/FelipeSoft/filesync-cloud/utils/http"
 )
 
 type AuthMiddleware struct {

@@ -7,7 +7,7 @@ import (
 
 	"github.com/FelipeSoft/filesync-cloud/internal/application/dto"
 	"github.com/FelipeSoft/filesync-cloud/internal/application/service"
-	httputil "github.com/FelipeSoft/filesync-cloud/internal/utils/http"
+	httputil "github.com/FelipeSoft/filesync-cloud/utils/http"
 	"github.com/go-playground/validator/v10"
 )
 

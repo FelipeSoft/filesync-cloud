@@ -1,2 +1,2 @@
 .env
-/internal/crypto/keys
+/internal/infrastructure/crypto/keys
