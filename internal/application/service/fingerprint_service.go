@@ -5,7 +5,7 @@ import (
 	"log"
 
 	"github.com/FelipeSoft/filesync-cloud/internal/application/dto"
-	keyloader "github.com/FelipeSoft/filesync-cloud/internal/crypto"
+	keyloader "github.com/FelipeSoft/filesync-cloud/internal/infrastructure/crypto"
 	"github.com/FelipeSoft/filesync-cloud/internal/domain"
 	"github.com/FelipeSoft/filesync-cloud/internal/domain/entity"
 	"github.com/FelipeSoft/filesync-cloud/internal/domain/repository"
